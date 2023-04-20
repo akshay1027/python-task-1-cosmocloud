@@ -19,14 +19,26 @@ list_2 = [
 
 def merge_lists(list_1, list_2) -> list:
     """
-    Complete this function, by merging the information from list_1 and list_2
-    to create a new list, which has all the information about each student from
-    both lists in one single dict.
-
-    - Both lists are unsorted
-    - Both lists can have missing values (for ex list_2 has missing id=2)
+    Steps invloved to solve:
+    1. Initialise global empty array for storing merged list.
+    2. Iterate through list_1 and make a copy of dict (nameed it as temp_dict) so that original list_1 is not modified.
+    3. Iterate through list_2 and check if the id from list_1 matches with any ids from list_2.
+    4. If matches, update the temproary dict. Break the second loop.
+    5. Add the temp_dict into global merged list
+    6. Return the merged list
     """
-    # return list_3
+    
+    merged_list = []
+    
+    for person_dataset_1 in list_1:
+        temp_dict = dict(person_dataset_1)
+        for person_dataset_2 in list_2:
+            if person_dataset_1["id"] == person_dataset_2["id"]:
+                temp_dict.update(person_dataset_2)
+                break
+        merged_list.append(temp_dict)
+            
+    return merged_list
 
-
-list_3 = merge_lists(list_1, list_2)
+# list_3 = merge_lists(list_1, list_2)
+print(merge_lists(list_1, list_2))
